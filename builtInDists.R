@@ -2,7 +2,7 @@
 subst=function(obj){
   for(i in 1:length(obj$g)){
     if(class(obj$g[[i]])=="character"){
-      obj$g[[i]] = buildInDists(obj$g[[i]])
+      obj$g[[i]] = builtInDists(obj$g[[i]])
     }
   }
   return(obj)
@@ -40,10 +40,10 @@ builtInDists = function(name){
     g = function(th,x){
       t1=th[1]
       t2=th[2]
-      t12=t1+t12
+      t12=t1+t2
       meanb=t1/t12
       m1=meanb-x
-      m2=t1*t2/(t12^2*(t12+1))-(x-meanb)^2
+      m2=t1*t2/(t12^2*(t12+1))-(x-mean(x))^2
       f=cbind(m1,m2)
       return(f)
     }

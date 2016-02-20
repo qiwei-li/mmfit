@@ -19,4 +19,8 @@ g = function(th, x){
 res1 = gmm(g, x, c(alpha = 0.1, beta = 0.1))
 
 # using mmfit
-res2 = mmfit(g=list(g), x=as.data.frame(x), start = list(c(alpha=0.1, beta=0.1)))
+res2 = mmfit(g=list("beta"), x=data.frame(x), start=list(c(alpha=0.1, beta=0.1)))
+
+# good
+res1
+res2
