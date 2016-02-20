@@ -20,10 +20,36 @@ mmfit=function(g,x,start){
 
 ####### Sustitute Function & G-Function Library #######
 subst=function(g){
-  func=switch(g,beta=BETA)
+  func=switch(g,poisson=POISSON,powerlaw=POWERLAW,gamma=GAMMA,beta=BETA)
   return(func) 
 }
 
+####### POISSON #######
+POISSON=function(th,x){
+  t1=th[1]
+  meanb=t1
+  m1=meanb-x
+  f=cbind(m1)
+  return(f)
+}
+
+##### f(x) = a x^(-k) #####
+POWERLAW=function(th,x){
+##### Lacking of well-defined value #####
+}
+
+##### GAMMA #####
+GAMMA=function(th,x){
+  k=th[1]
+  theta=th[2]
+  meanb=k*theta
+  m1=meanb-x
+  m2=k*theta^2-(x-meanb)^2
+  f=cbind(m1,m2)
+  return(f)
+}
+
+#####  BETA  #####
 BETA=function(th,x){
   t1=th[1]
   t2=th[2]
@@ -34,6 +60,11 @@ BETA=function(th,x){
   f=cbind(m1,m2)
   return(f)
 }
+
+#####  Mixture 2 Poisson  #####
+
+
+#####  Mixture 2 Exponetial #####
 
 ####### Example #######
 #> source("mmfit.R")
