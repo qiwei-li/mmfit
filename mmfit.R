@@ -13,7 +13,10 @@ mmfit=function(g,x,start){
   } else{
     stop("Error: g is not sufficiently defined.")  
   }
-  return(obj)
+  
+  i = 1
+  res = gmm(g=obj$g[[i]], x=obj$x[,i], start=obj$start[[i]])
+  return(res)
 }
 
 
