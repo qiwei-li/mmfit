@@ -1,7 +1,3 @@
-do_cdfband = function(x){
-  datplt<-data.frame(x)
-  
-  
-  
+do_cdfband = function(g, x, thetahat){
   
 }
