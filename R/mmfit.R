@@ -1,24 +1,17 @@
 mmfit=function(g, x, start){
-  if(is.null(g) || is.null(x) || is.null(start))
-    stop("ERROR: input cannot be null")
-  
-  if(class(g)!="character" || class(g)!="function")
-    stop("ERROR: g needs to be a function object or a name of built in functions")
-  
-  if(class(x)!="integer" || class(g)!="numeric")
-    stop("ERROR: x needs to be a vector")
   
   g = ifelse(class(g)=="character", builtInDists(g), g)
   
   res = gmm(g=g, x=x, t0=start)
-  coef = res$coefficients
-  se = sqrt(diag(res$vcov))
-  d <- ggplot(data.frame(x), aes(x=x)) + geom_histogram() 
-  d <- d + geom_density(data=data.frame())
+  thetahat = res$coefficients
+  thetahatses = sqrt(diag(res$vcov))
+  denscomp = do_denscomp(x,g,thetahat)
+  cdfband = do_cdfband(x,g,thetahat)
   
-  obj = structure(list(coef = coef,
-                       se = se,
-                       d = d), class="mmfit")
+  obj = structure(list(thetahat = thetahat,
+                       thetahatses = thetahatses,
+                       denscomp = denscomp,
+                       cdfband = cdfband), class="mmfit")
   return(obj)
 }
 

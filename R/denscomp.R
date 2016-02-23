@@ -1,6 +1,6 @@
-do_denscomp = function(g, x, coef){
+do_denscomp = function(g, x, thetahat){
   if(g == "poisson"){
-    dd = data.frame(x, dpois(x,coef[1]))
+    dd = data.frame(x, dpois(x,thetahat[1]))
     names(dd)=c("x","density")
     d <- ggplot(data = dd , aes(x = x, y=density))
     d <- d + geom_line()
@@ -14,7 +14,7 @@ do_denscomp = function(g, x, coef){
   }
   
   if(g == "gamma"){
-    dd = data.frame(x, dgamma(x,coef[1], coef[2]))
+    dd = data.frame(x, dgamma(x,thetahat[1], thetahat[2]))
     names(dd)=c("x","density")
     d <- ggplot(data = dd , aes(x = x, y=density))
     d <- d + geom_line()
@@ -25,7 +25,7 @@ do_denscomp = function(g, x, coef){
   }
   
   if(g == "beta"){
-    dd = data.frame(x, dbeta(x,coef[1], coef[2]))
+    dd = data.frame(x, dbeta(x,thetahat[1], thetahat[2]))
     names(dd)=c("x","density")
     d <- ggplot(data = dd , aes(x = x, y=density))
     d <- d + geom_line()
