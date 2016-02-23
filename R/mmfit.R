@@ -12,12 +12,12 @@ mmfit=function(g, x, start){
   
   res = gmm(g=g, x=x, t0=start)
   coef = res$coefficients
-  se = sqrt(diag(a$vcov))
+  se = sqrt(diag(res$vcov))
   d <- ggplot(data.frame(x), aes(x=x)) + geom_histogram() 
-  d <- d + geom_density(data=data.frame(dbeta(x,1,2)))
+  d <- d + geom_density(data=data.frame())
   
   obj = structure(list(coef = coef,
-                       se = ,
+                       se = se,
                        d = d), class="mmfit")
   return(obj)
 }
