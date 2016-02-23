@@ -20,6 +20,17 @@ builtInDists = function(name){
     }
   }
   
+  if(name == "negative binomial"){
+    g = function(th,x){
+      n=th[1]
+      p=th[2]
+      m1=n*(1-p)/p-x
+      m2=n*(1-p)/p^2-(x-mean(x))^2
+      f=cbind(m1,m2)
+      return(f)
+    }
+  }
+  
   if(name == "gamma"){
     g = function(th,x){
       k=th[1]
