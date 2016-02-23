@@ -1,12 +1,14 @@
 do_cdfband = function(x){
-  require(ggplot2)
   x.df <-data.frame(x = x)
   n <- dim(x.df)[1]
   fun.ecdf <- ecdf(x.df$x)
   ecdf.val <- fun.ecdf(sort(x.df$x))
   ecdf.df <- data.frame(x = sort(x.df$x), ecdf.val=ecdf.val)
   
-  predframe <- with(ecdf.df,data.frame(x=x,ecdf.val=ecdf.val, lwr=ecdf.val-1.358*n^(-0.5), upr=ecdf.val+1.358*n^(-0.5)))
+  lwr = ecdf.df$ecdf.val-1.358*n^(-0.5)
+  upr = ecdf.df$ecdf.val+1.358*n^(-0.5)
+  
+  predframe <- data.frame(cbind(ecdf.df, lwr, upr))
   
   dd = ggplot(ecdf.df,aes(x,ecdf.val))+
        geom_line(data=predframe) +

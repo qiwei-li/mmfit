@@ -1,4 +1,10 @@
 export(mmfit)
 
+S3method(print, mmf)
+S3method(summary, mmf)
+S3method(plot, mmf)
+
+
 import(gmm)
 import(ggplot2)
+import(grid)

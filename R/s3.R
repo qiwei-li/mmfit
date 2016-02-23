@@ -1,6 +1,4 @@
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-  library(grid)
-  
   # Make a list from the ... arguments and plotlist
   plots <- c(list(...), plotlist)
   
@@ -40,9 +38,12 @@ print.mmf=function(x,...){
 }
 
 summary.mmf=function(object,...){
-  print(object[[1]])
-  print(object[[2]])
+  for(i in 1:length(object[[1]])){
+    print(paste0("The point estimate for the ", i, "th parameter is ", round(object[[1]][i],3),
+                 ", the standard error is ", round(object[[2]][i],3)))
+  }
 }
+
 plot.mmf=function(x,...){
   multiplot(x[[3]],x[[4]],cols = 2)
 }

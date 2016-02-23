@@ -1,10 +1,10 @@
 Package: mmfit
 Title: mmfit
-Description: R package for fitting distributions (single or mixture) to data
-Version: 0.1
+Description: This package includes tools for fitting distributions to data with method of moment
+Version: 1.0
 License: GPL(>=2)
 Author: Bingxi Li, Qiwei Li, Jiaping Zhang
 Maintainer: Qiwei Li  <qwli@ucdavis.edu>
-Imports: ggplot2, gmm
+Imports: ggplot2, gmm, grid
 
 
