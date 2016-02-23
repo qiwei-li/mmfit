@@ -26,7 +26,7 @@ builtInDists = function(name){
       theta=th[2]
       meanb=k*theta
       m1=meanb-x
-      m2=k*theta^2-(x-meanb)^2
+      m2=k*theta^2-(x-mean(x))^2
       f=cbind(m1,m2)
       return(f)
     }
