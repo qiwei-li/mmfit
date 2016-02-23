@@ -1,22 +1,16 @@
-mmfit=function(g,x,start){
-  if(is.null(g) || is.null(x) || is.null(start)){
+mmfit=function(g, x, start){
+  if(is.null(g) || is.null(x) || is.null(start))
     stop("ERROR: input cannot be null")
-  }
   
-  if(ncol(x)==length(g)){
-    obj = list(g=g,x=x,start=start)
-    obj = subst(obj)
-  } else if (length(g)==1){
-    g = as.list(rep(g, ncol(x)))
-    obj = list(g=g,x=x,start=start)
-    obj = subst(obj)
-  } else{
-    stop("Error: g is not sufficiently defined.")  
-  }
+  if(class(g)!="character" || class(g)!="function")
+    stop("ERROR: g needs to be a function object or a name of built in functions")
   
-  res = lapply(1:length(obj$g), function(i) {
-    gmm(g=obj$g[[i]], x=obj$x[,i], t0=obj$start[[i]])}
-  )
+  if(class(x)!="integer" || class(g)!="numeric")
+    stop("ERROR: x needs to be a vector")
+  
+  g = ifelse(class(g)=="character", builtInDists(g), g)
+  
+  res = gmm(g=g, x=x, t0=start)
   class(res) = "mmfit"
   return(res)
 }

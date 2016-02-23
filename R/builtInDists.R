@@ -1,13 +1,3 @@
-# sustitute strings into actual functions
-subst=function(obj){
-  for(i in 1:length(obj$g)){
-    if(class(obj$g[[i]])=="character"){
-      obj$g[[i]] = builtInDists(obj$g[[i]])
-    }
-  }
-  return(obj)
-}
-
 # built in distributions
 builtInDists = function(name){
   if(name == "poisson"){
