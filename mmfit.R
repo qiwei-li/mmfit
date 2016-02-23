@@ -11,7 +11,7 @@ mmfit=function(g,x,start){
     obj = list(g=g,x=x,start=start)
     obj = subst(obj)
   } else{
-    stop("Error: g is not sufficiently defined.")  
+    stop("Error: g is not well defined.")  
   }
   
   res = lapply(1:length(obj$g), function(i) {
