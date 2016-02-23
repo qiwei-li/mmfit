@@ -55,7 +55,18 @@ builtInDists = function(name){
   }
   
   if(name == "mixture of 2 exponentials"){
-    
+    g = function(th,x){
+      mu=th[1]
+      lambda=th[2]
+      alpha=th[3]
+      meanb=alpha*mu+(1-alpha)*lambda
+      m1=meanb-x
+      m2=2*(alpha*mu^2+(1-alpha)*lambda^2)-x^2
+      m3=6*(alpha*mu^3+(1-alpha)*lambda^3)-x^3
+      f=cbind(m1,m2,m3)
+      return(f)
+    }
+      
   }
   return(g)
 }
