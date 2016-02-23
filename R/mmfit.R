@@ -8,7 +8,7 @@ mmfit=function(g, x, start){
   thetahat = res$coefficients
   thetahatses = sqrt(diag(res$vcov))
   denscomp = do_denscomp(orig_g,x,thetahat)
-  cdfband = do_cdfband(g,x,thetahat)
+  cdfband = do_cdfband(x)
   
   obj = structure(list(thetahat = thetahat,
                        thetahatses = thetahatses,

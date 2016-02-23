@@ -17,4 +17,4 @@ g = function(th,x){
 
 
 a = mmfit(g="beta",x=x,start=c(0.2,0.2))
-a
+print(a)

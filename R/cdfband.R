@@ -8,8 +8,9 @@ do_cdfband = function(x){
   
   predframe <- with(ecdf.df,data.frame(x=x,ecdf.val=ecdf.val, lwr=ecdf.val-1.358*n^(-0.5), upr=ecdf.val+1.358*n^(-0.5)))
   
-  ggplot(ecdf.df,aes(x,ecdf.val))+
+  dd = ggplot(ecdf.df,aes(x,ecdf.val))+
        geom_line(data=predframe) +
        geom_ribbon(data=predframe,aes(ymin=lwr,ymax=upr),alpha=0.3)+
        labs(title='CDF with K-S CI band',x='data',y='prob')
+  return(dd)
 }
