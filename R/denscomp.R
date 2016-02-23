@@ -32,5 +32,6 @@ do_denscomp = function(g, x, thetahat){
   d <- ggplot(data = data.frame(x), aes(x=x, y=..density..))
   d <- d + geom_histogram()
   d <- d + geom_line(data=data.frame(x=density(fhat)$x, y=density(fhat)$y), aes(x=x, y=y))
+  d <- d + labs(title='parametric and nonparametric density',x='data',y='density')
   return(d)
 }

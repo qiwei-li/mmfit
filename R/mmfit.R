@@ -4,6 +4,7 @@ mmfit=function(g, x, start){
     orig_g = g
     g = builtInDists(g)
   }
+  print(orig_g)
   res = gmm(g=g, x=x, t0=start)
   thetahat = res$coefficients
   thetahatses = sqrt(diag(res$vcov))

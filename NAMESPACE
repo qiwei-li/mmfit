@@ -1,5 +1,4 @@
 export(mmfit)
 
 import(gmm)
-import(rebmix)
-import(Renext)
+import(ggplot2)
