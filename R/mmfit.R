@@ -11,8 +11,15 @@ mmfit=function(g, x, start){
   g = ifelse(class(g)=="character", builtInDists(g), g)
   
   res = gmm(g=g, x=x, t0=start)
-  class(res) = "mmfit"
-  return(res)
+  coef = res$coefficients
+  se = sqrt(diag(a$vcov))
+  d <- ggplot(data.frame(x), aes(x=x)) + geom_histogram() 
+  d <- d + geom_density(data=data.frame(dbeta(x,1,2)))
+  
+  obj = structure(list(coef = coef,
+                       se = ,
+                       d = d), class="mmfit")
+  return(obj)
 }
 
 
