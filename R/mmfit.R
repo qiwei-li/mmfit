@@ -13,7 +13,7 @@ mmfit=function(g, x, start){
   obj = structure(list(thetahat = thetahat,
                        thetahatses = thetahatses,
                        denscomp = denscomp,
-                       cdfband = cdfband), class="mmfit")
+                       cdfband = cdfband), class="mmf")
   return(obj)
 }
 
