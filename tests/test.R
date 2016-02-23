@@ -16,22 +16,5 @@ g = function(th,x){
 }
 
 
-
-ggplot(data.frame(x), aes(x=x)) + 
-  geom_histogram(aes(y=..density..),      # Histogram with density instead of count on y-axis
-                 colour="black", fill="white") +
-  geom_line(data = data.frame(dbeta(x,4.6522,19.9203)), aes(x = x)) 
-
-
-dd = data.frame(x, dbeta(x,4.6522,19.9203))
-names(dd)=c("x","density")
-d <- ggplot(data = dd , aes(x = x, y=density))
-d <- d + geom_line()
-d
-d <- d + geom_histogram(aes(x=x, y=..density..), alpha=0.4)
-d
-
-
-# good
-res1
-res2
+a = mmfit(g="beta",x=x,start=c(0.2,0.2))
+a
