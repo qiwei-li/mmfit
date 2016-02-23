@@ -11,7 +11,13 @@ builtInDists = function(name){
   }
   
   if(name == "power law"){
-
+    g = function(th,x){
+      a=th[1]
+      meanb=2^(1/(a-1))
+      m1=meanb-x/min(x)
+      f=cbind(m1)
+      return(f)
+    }
   }
   
   if(name == "gamma"){
