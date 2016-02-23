@@ -47,7 +47,16 @@ builtInDists = function(name){
   }
   
   if(name == "mixture of 2 poissons"){
-    
+    g = function(th,x){
+      lambda1 = th[1]
+      lambda2 = th[2]
+      alpha = th[3]
+      m1 = alpha*lambda1 + (1-alpha)*lambda2 - x
+      m2 = alpha*(lambda1^2+lambda1) + (1-alpha)*(lambda2^2+lammbda2) - x^2
+      m3 = alpha*(lambda1^3+3*lambda1^2+lambda1) + (1-alpha)*(lambda2^3+3*lambda2^2+lambda2) - x^3
+      f = cbind(m1,m2,m3)
+      return(f)
+    }
   }
   
   if(name == "mixture of 2 exponentials"){
