@@ -12,9 +12,8 @@ builtInDists = function(name){
   
   if(name == "power law"){
     g = function(th,x){
-      a=th[1]
-      meanb=2^(1/(a-1))
-      m1=meanb-x/min(x)
+      gamma=th[1]
+      m1= (gamma-1)/(gamma-2) - x
       f=cbind(m1)
       return(f)
     }
@@ -82,7 +81,6 @@ builtInDists = function(name){
       f=cbind(m1,m2,m3)
       return(f)
     }
-      
   }
   return(g)
 }
