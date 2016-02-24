@@ -13,7 +13,7 @@ do_cdfband = function(x,g,theta){
        geom_ribbon(data=predframe,aes(ymin=lwr,ymax=upr),alpha=0.3)+
        labs(title='CDF with K-S CI band',x='data',y='prob')+theme(legend.title=element_blank())
   
-  if(g=="poisson"){
+  if(g =="poisson"){
     ecdf.df$cdf=ppois(sort(x.df$x),lambda = theta[1])
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Pois Estimation"))   
   } 
