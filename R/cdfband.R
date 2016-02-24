@@ -18,6 +18,15 @@ do_cdfband = function(x,g,theta){
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Pois Estimation"))   
   } 
   
+  if(g=="power law"){
+    dd = NULL  
+  }
+  
+  if(g=="negative binomial"){
+    ecdf.df$cdf=pnbinom(sort(x.df$x),size = theta[1],prob = theta[2])
+    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Negtive Binomial Estimation"))   
+  }
+  
   if(g=="gamma"){
     ecdf.df$cdf=pgamma(sort(x.df$x),shape=theta[1],scale=theta[2])
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Gamma Estimation"))   
