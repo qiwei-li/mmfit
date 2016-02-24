@@ -28,6 +28,15 @@ do_cdfband = function(x,g,theta){
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Beta Estimation"))
   }
   
+  if(g=="power law"){
+    gamma = thetahat[1]
+    c = gamma - 1
+    pdf.f = function(k) c*k^(-gamma)
+    probs = pcd.f(ecdf.df$x)
+    ecdf.df$cdf= cumsum(probs)
+    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Power Law Estimation"))
+  }
+  
   if(g=="mixture of 2 poissons"){
     ecdf.df$cdf=theta[3]*ppois(sort(x.df$x),theta[1])+(1-theta[3])*ppois(sort(x.df$x),theta[2])
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Mixed 2 Pois Estimation"))    
