@@ -15,21 +15,28 @@ do_cdfband = function(x,g,theta){
   
   if(g=="poisson"){
     ecdf.df$cdf=ppois(sort(x.df$x),lambda = theta[1])
-    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Estimation"))   
+    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Pois Estimation"))   
   } 
   
   if(g=="gamma"){
     ecdf.df$cdf=pgamma(sort(x.df$x),shape=theta[1],scale=theta[2])
-    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Estimation"))   
+    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Gamma Estimation"))   
   }
   
   if(g=="beta"){
     ecdf.df$cdf=pbeta(sort(x.df$x),theta[1],theta[2])
-    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Estimation"))
+    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Beta Estimation"))
   }
   
   if(g=="mixture of 2 poissons"){
-    
+    ecdf.df$cdf=theta[3]*ppois(sort(x.df$x),theta[1])+(1-theta[3])*ppois(sort(x.df$x),theta[2])
+    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Mixed 2 Pois Estimation"))    
   }
+  
+  if(g=="mixture of 2 exponentials"){
+    ecdf.df$cdf=theta[3]*pexp(sort(x.df$x),rate = 1.0/theta[1])+(1-theta[3])*pexp(sort(x.df$x),rate = 1.0/theta[2])
+    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Mixed 2 Exp Estimation"))    
+  }
+  
   return(dd)
 }
