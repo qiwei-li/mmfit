@@ -15,7 +15,7 @@ mmf object which includes the estimations and standard errors of the parameters,
 }
 \examples{
 data("bodyfat")
-x = bodyfat$brozek/100
+x = bodyfat/100
 a = mmfit(g="beta",x=x,start=c(0.2,0.2))
 summary(a)
 print(a)

@@ -4,7 +4,13 @@ do_denscomp = function(g, x, thetahat){
   }
    
   if(g == "power law"){
-    return(NULL)
+    gamma = thetahat[1]
+    c = gamma - 1
+    pdf.f = function(k) c*k^(-gamma)
+    x.df = data.frame(data=x)
+    
+    x.df$prob = pdf.f(x.df$data)
+    fhat = sample(x.df$data,length(x.df$data),replace=TRUE,x.df$prob)
   }
   
   if(g == "gamma"){
