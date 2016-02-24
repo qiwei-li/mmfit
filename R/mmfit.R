@@ -16,7 +16,12 @@ mmfit=function(g, x, start){
   } else {
     denscomp = do_denscomp(orig_g,x,thetahat)
   }
-  cdfband = do_cdfband(x)
+  
+  if(self){
+    cdfband = NULL
+  } else {
+    cdfband = do_cdfband(x,g,theta)
+  }
   
   obj = structure(list(thetahat = thetahat,
                        thetahatses = thetahatses,
