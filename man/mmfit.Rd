@@ -6,7 +6,7 @@
 mmfit(g, x, start)
 }
 \arguments{
-\item{g}{Name of the distribution. Built in option includes: {"poisson", "power law", "gamma", "beta", "mixture of 2 poissons", "mixture of 2 exponentials"}}
+\item{g}{Name of the distribution. Built in option includes: {"poisson", "power law", "gamma", "beta", "negative binomial","mixture of 2 poissons", "mixture of 2 exponentials","mixture of 2 normals"}}
 \item{x}{A vector of data}
 \item{start}{Starting values of the estimating parameters}
 }
