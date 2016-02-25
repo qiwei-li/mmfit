@@ -18,10 +18,6 @@ do_cdfband = function(x,g,theta){
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Pois Estimation"))   
   } 
   
-  if(g=="power law"){
-    dd = NULL  
-  }
-  
   if(g=="negative binomial"){
     ecdf.df$cdf=pnbinom(sort(x.df$x),size = theta[1],prob = theta[2])
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Negtive Binomial Estimation"))   
@@ -38,10 +34,10 @@ do_cdfband = function(x,g,theta){
   }
   
   if(g=="power law"){
-    gamma = thetahat[1]
+    gamma = theta[1]
     c = gamma - 1
     pdf.f = function(k) c*k^(-gamma)
-    probs = pcd.f(ecdf.df$x)
+    probs = pdf.f(ecdf.df$x)
     ecdf.df$cdf= cumsum(probs)
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Power Law Estimation"))
   }
