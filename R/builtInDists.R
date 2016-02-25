@@ -82,5 +82,27 @@ builtInDists = function(name){
       return(f)
     }
   }
+
+  if(name == "mixture of 2 normals"){
+    g = function(th,x){
+      theta1=th[1]
+      sigma1=th[2]
+      theta2=th[3]
+      sigma2=th[4]
+      alpha=th[5]
+      means=mean(x)
+      m1=theta1-means
+      m2=theta2-means
+      
+      mm1=alpha*m1+(1-alpha)*m2-(x-means)
+      mm2=alpha*(sigma1^2+m1^2)+(1-alpha)*(sigma2^2+m2^2)-(x-means)^2
+      mm3=alpha*(3*sigma1^2*m1+m1^3)+(1-alpha)*(3*sigma2^2*m2+m2^3)-(x-means)^3
+      mm4=alpha*(3*sigma1^4+6*m1^2*sigma1^2+m1^4)+(1-alpha)*(3*sigma2^4+6*m2^2*sigma2^2+m2^4)-(x-means)^4
+      mm5=alpha*(15*sigma1^4*m1+10*sigma1^2*m1^3+m1^5)+(1-alpha)*(15*sigma2^4*m2+10*sigma2^2*m2^3+m2^5)-(x-means)^5
+      f=cbind(mm1,mm2,mm3,mm4,mm5)
+      return(f)
+    }
+  }
+  
   return(g)
 }

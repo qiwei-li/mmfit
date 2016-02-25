@@ -52,5 +52,10 @@ do_cdfband = function(x,g,theta){
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Mixed 2 Exp Estimation"))    
   }
   
+  if(g=="mixture of 2 normals"){
+    ecdf.df$cdf=theta[5]*pnorm(sort(x.df$x),mean=theta[1],sd = theta[2])+(1-theta[5])*pnorm(sort(x.df$x),mean = theta[3],sd = theta[4])
+    dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Mixed 2 Norm Estimation"))    
+  }
+  
   return(dd)
 }
