@@ -1,4 +1,4 @@
-do_denscomp = function(g, x, thetahat gd){
+do_denscomp = function(g, x, thetahat, gd){
   if(!is.null(gd)){
     values = seq(from = min(x), to = max(x), by = 0.1)
     prob = sapply(values, function(i) gd(x, thetahat))
