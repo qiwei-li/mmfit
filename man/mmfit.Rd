@@ -19,5 +19,10 @@ x = bodyfat/100
 a = mmfit(g="beta",x=x,start=c(0.2,0.2))
 summary(a)
 print(a)
+print("mixture of 2 normals")
+x = hist(faithful$waiting)
+a = mmfit(g="mixture of 2 normals",x=faithful$waiting,start=c(50,5,80,2,0.3))
+summary(a)
+print(a)
 }
 \keyword{mmfit}
