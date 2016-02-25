@@ -10,7 +10,7 @@ do_denscomp = function(g, x, thetahat gd){
   }
   
   if(g == "negative binomial"){
-    fhat = rnbinom(len(x),thetahat[1])
+    fhat = rnbinom(len(x),thetahat[1], thetahat[2])
   }
   
   if(g == "power law"){
@@ -42,17 +42,24 @@ do_denscomp = function(g, x, thetahat gd){
   if(g == "mixture of 2 poissons"){
     flag = sample(2, len(x), prob = c(thetahat[3], 1-thetahat[3]), replace=TRUE)
     d1 = rpois(sum(flag==1), thetahat[1])
-    d2 = rpois(sum(flag==2), thetahat[1])
+    d2 = rpois(sum(flag==2), thetahat[2])
     fhat = c(d1, d2)
   }
   
   if(g == "mixture of 2 exponentials"){
     flag = sample(2, len(x), prob = c(thetahat[3], 1-thetahat[3]), replace=TRUE)
     d1 = rexp(sum(flag==1), thetahat[1])
-    d2 = rexp(sum(flag==2), thetahat[1])
+    d2 = rexp(sum(flag==2), thetahat[2])
     fhat = c(d1, d2)
   }
 
+  if(g == "mixture of 2 normals"){
+    flag = sample(2, len(x), prob = c(thetahat[5], 1-thetahat[5]), replace=TRUE)
+    d1 = rnorm(sum(flag==1), thetahat[1], thetahat[2])
+    d2 = rnorm(sum(flag==2), thetahat[3], thetahat[4])
+    fhat = c(d1, d2)
+  }
+  
   d <- ggplot(data = data.frame(x), aes(x=x, y=..density..))
   d <- d + geom_histogram()
   d <- d + geom_line(data=data.frame(x=density(fhat)$x, y=density(fhat)$y), aes(x=x, y=y))
