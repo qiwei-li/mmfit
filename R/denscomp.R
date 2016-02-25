@@ -2,15 +2,15 @@ do_denscomp = function(g, x, thetahat gd){
   if(!is.null(gd)){
     values = seq(from = min(x), to = max(x), by = 0.1)
     prob = sapply(values, function(i) gd(x, thetahat))
-    fhat = sample(values, len(x), replace = TRUE, prob = prob)
+    fhat = sample(values, length(x), replace = TRUE, prob = prob)
   }
   
   if(g == "poisson"){
-    fhat = rpois(len(x),thetahat[1])
+    fhat = rpois(length(x),thetahat[1])
   }
   
   if(g == "negative binomial"){
-    fhat = rnbinom(len(x),thetahat[1], thetahat[2])
+    fhat = rnbinom(length(x),thetahat[1], thetahat[2])
   }
   
   if(g == "power law"){
@@ -32,29 +32,29 @@ do_denscomp = function(g, x, thetahat gd){
   }
   
   if(g == "gamma"){
-    fhat = rgamma(len(x),thetahat[1], thetahat[2])
+    fhat = rgamma(length(x),thetahat[1], thetahat[2])
   }
   
   if(g == "beta"){
-    fhat = rbeta(len(x),thetahat[1], thetahat[2])
+    fhat = rbeta(length(x),thetahat[1], thetahat[2])
   }
   
   if(g == "mixture of 2 poissons"){
-    flag = sample(2, len(x), prob = c(thetahat[3], 1-thetahat[3]), replace=TRUE)
+    flag = sample(2, length(x), prob = c(thetahat[3], 1-thetahat[3]), replace=TRUE)
     d1 = rpois(sum(flag==1), thetahat[1])
     d2 = rpois(sum(flag==2), thetahat[2])
     fhat = c(d1, d2)
   }
   
   if(g == "mixture of 2 exponentials"){
-    flag = sample(2, len(x), prob = c(thetahat[3], 1-thetahat[3]), replace=TRUE)
+    flag = sample(2, length(x), prob = c(thetahat[3], 1-thetahat[3]), replace=TRUE)
     d1 = rexp(sum(flag==1), thetahat[1])
     d2 = rexp(sum(flag==2), thetahat[2])
     fhat = c(d1, d2)
   }
 
   if(g == "mixture of 2 normals"){
-    flag = sample(2, len(x), prob = c(thetahat[5], 1-thetahat[5]), replace=TRUE)
+    flag = sample(2, length(x), prob = c(thetahat[5], 1-thetahat[5]), replace=TRUE)
     d1 = rnorm(sum(flag==1), thetahat[1], thetahat[2])
     d2 = rnorm(sum(flag==2), thetahat[3], thetahat[4])
     fhat = c(d1, d2)
