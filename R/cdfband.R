@@ -35,10 +35,20 @@ do_cdfband = function(x,g,theta){
   
   if(g=="power law"){
     gamma = theta[1]
-    c = gamma - 1
+    test.sum = 0
+    k = 1
+    last.sum = 1
+    while(abs(test.sum-last.sum) > 10e-6){
+      last.sum = test.sum
+      test.sum = test.sum + k^(-gamma)
+      k=k+1
+    }
+    c = 1/test.sum  #more robust to calculate c
     pdf.f = function(k) c*k^(-gamma)
-    probs = pdf.f(ecdf.df$x)
-    ecdf.df$cdf= cumsum(probs)
+    num = unique(ecdf.df$x)
+    cdf.probs = cumsum(pdf.f(num))
+    cdf.map = list(num=num,cdf.val=cdf.probs)
+    ecdf.df$cdf= sapply(ecdf.df$x, function(x) cdf.map$cdf.val[which(cdf.map$num==x)])
     dd = dd + geom_line(aes(y=ecdf.df$cdf,colour="Power Law Estimation"))
   }
   

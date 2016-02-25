@@ -5,8 +5,16 @@ do_denscomp = function(g, x, thetahat){
    
   if(g == "power law"){
     gamma = thetahat[1]
-    c = gamma - 1
-    pdf.f = function(k) c*k^(-gamma)
+    test.sum = 0
+    k = 1
+    last.sum = 1
+    while(abs(test.sum-last.sum) > 10e-6){
+      last.sum = test.sum
+      test.sum = test.sum + k^(-gamma)
+      k=k+1
+    }
+    c = 1/test.sum
+    pdf.f = function(x) c*x^(-gamma)
     x.df = data.frame(data=x)
     
     x.df$prob = pdf.f(x.df$data)
