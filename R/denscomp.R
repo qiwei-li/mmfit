@@ -1,4 +1,10 @@
-do_denscomp = function(g, x, thetahat){
+do_denscomp = function(g, x, thetahat gd){
+  if(!is.null(gd)){
+    values = seq(from = min(x), to = max(x), by = 0.1)
+    prob = sapply(values, function(i) gd(x, thetahat))
+    fhat = sample(x = c(min(x), max(x)), 5000, replace = TRUE, prob = prob)
+  }
+  
   if(g == "poisson"){
     fhat = rpois(1000,thetahat[1])
   }
