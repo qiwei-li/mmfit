@@ -40,7 +40,7 @@ library(mvtnorm)
 sigma <- matrix(c(4,2,2,3),ncol=2)
 nums = rmvnorm(1000, mean=c(5,10),sigma=sigma)
 c = mmfit(g="bivariate normal",x=nums,start=c(mu1=5,mu2=10,sigma11=6,sigma22=5,sigma12=4))
-print(c)
+summary(c)
 }
 
 # fit a mixture normal distribution on a real dataset
