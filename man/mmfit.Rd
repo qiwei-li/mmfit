@@ -3,7 +3,7 @@
 \title{mmfit}
 \description{fit data with method of moment}
 \usage{
-mmfit(g, x, start, gd)
+mmfit(g, x, gd, start)
 }
 \arguments{
 \item{g}{Name of the distribution. Built in option includes: {"poisson", "power law", "gamma", "beta", "negative binomial","mixture of 2 poissons", "mixture of 2 exponentials","mixture of 2 normals"}}
@@ -15,6 +15,9 @@ mmfit(g, x, start, gd)
 mmf object which includes the estimations and standard errors of the parameters, a graph object that compares the parametric and nonparametric density estimates, a graph object that draws the empirical cdf and an enclosing Kolmogorov-Smirnov confidence band
 }
 \examples{
+# We provide three examples below. 
+# There first two require other packages' data. We comment them out
+if(FALSE){
 # fit a beta distribution on a real dataset
 install.packages("mfp")
 library("mfp")
@@ -30,6 +33,7 @@ data("moby")
 x = moby
 b = mmfit(g="power law",x=x,start=c(gamma = 20))
 print(b)
+}
 
 # fit a mixture normal distribution on a real dataset
 x = faithful$waiting
