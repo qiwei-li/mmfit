@@ -21,7 +21,12 @@ data("bodyfat")
 x = bodyfat$brozek/100
 a = mmfit(g="beta",x=x,start=c(alpha=0.2,beta=0.2))
 print(a)
-
+print("mixture of 2 normals")
+x = hist(faithful$waiting)
+a = mmfit(g="mixture of 2 normals",x=faithful$waiting,start=c(50,5,80,2,0.3))
+summary(a)
+print(a)
+print("powerlawer")
 install.packages("poweRlaw")
 library("poweRlaw")
 data("moby")
