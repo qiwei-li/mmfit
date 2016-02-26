@@ -1,7 +1,8 @@
 mmfit=function(g, x, gd=NULL, start){
   
   if(class(g)=="character"){
-    g = builtInDists(g)
+    orig_g = g
+    g = builtInDists(name = g)
   } else {
     if(is.null(gd))
       stop("If you use your own g, you need to provide the pmf/pdf as gd")
@@ -13,8 +14,8 @@ mmfit=function(g, x, gd=NULL, start){
   thetahatses = sqrt(diag(res$vcov))
   names(thetahatses) = names(start)
   
-  denscomp = do_denscomp(g,x,thetahat, gd)
-  cdfband = do_cdfband(x,g,thetahat,gd)
+  denscomp = do_denscomp(orig_g,x,thetahat, gd)
+  cdfband = do_cdfband(x,orig_g,thetahat,gd)
   
   obj = structure(list(thetahat = thetahat,
                        thetahatses = thetahatses,
