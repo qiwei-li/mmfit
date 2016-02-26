@@ -44,10 +44,9 @@ summary.mmf=function(object,...){
       print(paste0("The point estimate for the ", i, "th parameter is ", round(object[[1]][i],3),
                    ", the standard error is ", round(object[[2]][i],3)))
     }
-  }
-  else{
+  }else{
     for(i in 1:length(object[[1]])){
-      print(paste0("The point estimate for ", name[1], " is ", round(object[[1]][i],3),
+      print(paste0("The point estimate for ", name[i], " is ", round(object[[1]][i],3),
                    ", the standard error is ", round(object[[2]][i],3)))
     }
   }
