@@ -15,23 +15,29 @@ mmfit(g, x, start, gd)
 mmf object which includes the estimations and standard errors of the parameters, a graph object that compares the parametric and nonparametric density estimates, a graph object that draws the empirical cdf and an enclosing Kolmogorov-Smirnov confidence band
 }
 \examples{
+# fit a beta distribution on a real dataset
 install.packages("mfp")
 library("mfp")
 data("bodyfat")
 x = bodyfat$brozek/100
 a = mmfit(g="beta",x=x,start=c(alpha=0.2,beta=0.2))
 print(a)
-print("mixture of 2 normals")
-x = hist(faithful$waiting)
-a = mmfit(g="mixture of 2 normals",x=faithful$waiting,start=c(50,5,80,2,0.3))
-summary(a)
-print(a)
-print("powerlawer")
+
+# fit a power law distribution on a real dataset
 install.packages("poweRlaw")
 library("poweRlaw")
 data("moby")
 x = moby
 b = mmfit(g="power law",x=x,start=c(gamma = 20))
 print(b)
+
+# fit a mixture normal distribution on a real dataset
+print("mixture of 2 normals")
+x = hist(faithful$waiting)
+c = mmfit(g="mixture of 2 normals",x=faithful$waiting,start=c(mu1=50,sd1=5,mu2=80,sd2=2,prop1=0.3))
+print(c)
+
+
+
 }
 \keyword{mmfit}
