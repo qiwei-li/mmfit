@@ -18,12 +18,12 @@ mmfit=function(g, x, gd=NULL, start){
                       error = function(err){
                         print("Can't visualize multivariate data")
                         return(NULL)
-                      }
+                      })
   cdfband = tryCatch({do_cdfband(x,orig_g,thetahat,gd)},
                      error = function(err){
                        print("Can't visualize multivariate data")
                        return(NULL)
-                     }
+                     })
   
   obj = structure(list(thetahat = thetahat,
                        thetahatses = thetahatses,
