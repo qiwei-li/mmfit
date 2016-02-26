@@ -33,20 +33,19 @@ data("moby")
 x = moby
 b = mmfit(g="power law",x=x,start=c(gamma = 20))
 print(b)
-}
-
-# fit a mixture normal distribution on a real dataset
-x = faithful$waiting
-c = mmfit(g="mixture of 2 normals",x=x,start=c(mu1=50,sd1=5,mu2=80,sd2=2,prop1=0.3))
-print(c)
-}
 
 # fit a bivariate normal on a simulation dataset(data.frame)
 install.packages("mvtnorm")
 library(mvtnorm)
 sigma <- matrix(c(4,2,2,3),ncol=2)
 nums = rmvnorm(1000, mean=c(5,10),sigma=sigma)
-res = mmfit("bivariate normal",nums,start=c(mu1=5,mu2=10,sigma11=6,sigma22=5,sigma12=4))
-summary(res)
+c = mmfit(g="bivariate normal",x=nums,start=c(mu1=5,mu2=10,sigma11=6,sigma22=5,sigma12=4))
+print(c)
+}
 
+# fit a mixture normal distribution on a real dataset
+x = faithful$waiting
+d = mmfit(g="mixture of 2 normals",x=x,start=c(mu1=50,sd1=5,mu2=80,sd2=2,prop1=0.3))
+print(d)
+}
 \keyword{mmfit}
