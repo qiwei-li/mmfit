@@ -32,11 +32,8 @@ b = mmfit(g="power law",x=x,start=c(gamma = 20))
 print(b)
 
 # fit a mixture normal distribution on a real dataset
-x = hist(faithful$waiting)
-c = mmfit(g="mixture of 2 normals",x=faithful$waiting,start=c(mu1=50,sd1=5,mu2=80,sd2=2,prop1=0.3))
+x = faithful$waiting
+c = mmfit(g="mixture of 2 normals",x=x,start=c(mu1=50,sd1=5,mu2=80,sd2=2,prop1=0.3))
 print(c)
-
-
-
 }
 \keyword{mmfit}
