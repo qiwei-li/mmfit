@@ -13,8 +13,14 @@ mmfit=function(g, x, gd=NULL, start){
   thetahatses = sqrt(diag(res$vcov))
   names(thetahatses) = names(start)
   
-  denscomp = do_denscomp(g,x,thetahat, gd),
-  cdfband = do_cdfband(x,g,thetahat,gd)
+  denscomp = tryCatch({do_denscomp(g,x,thetahat, gd)},
+                      error = function(err){ 
+                        print("Can't visualize multivariate data")
+                        return(NULL)
+                        })
+  cdfband = tryCatch({do_cdfband(x,g,thetahat,gd)},error = function(err){ 
+                        print("Can't visualize multivariate data")
+                        return(NULL)})
   
   obj = structure(list(thetahat = thetahat,
                        thetahatses = thetahatses,

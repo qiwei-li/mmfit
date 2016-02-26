@@ -10,6 +10,24 @@ builtInDists = function(name){
     }
   }
   
+  if(name=="bivariate normal"){
+    g = function(th,x){
+      mu1=th[1]
+      mu2=th[2]
+      sigma11 = th[3]
+      sigma22 = th[4]
+      sigma12 = th[5]
+      
+      m1= mu1 - x[,1]
+      m2= mu2 - x[,2]
+      m3= sigma11 - (x[,1]-mean(x[,1]))^2 
+      m4= sigma12 - (x[,1]-mean(x[,1]))*(x[,2]-mean(x[,2]))
+      m5= sigma22 - (x[,2]-mean(x[,2]))^2 
+      f=cbind(m1,m2,m3,m4,m5)
+      return(f)
+    }
+  }
+  
   if(name == "power law"){
     g = function(th,x){
       gamma=th[1]
