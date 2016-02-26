@@ -12,7 +12,9 @@ mmfit=function(g, x, gd=NULL, start){
   
   res = gmm(g=g, x=x, t0=start)
   thetahat = res$coefficients
+  names(thetahat) = names(start)
   thetahatses = sqrt(diag(res$vcov))
+  names(thetahatses) = names(start)
   
   denscomp = do_denscomp(orig_g,x,thetahat, gd)
   cdfband = do_cdfband(x,orig_g,thetahat,gd)

@@ -19,14 +19,14 @@ install.packages("mfp")
 library("mfp")
 data("bodyfat")
 x = bodyfat$brozek/100
-a = mmfit(g="beta",x=x,start=c(0.2,0.2))
+a = mmfit(g="beta",x=x,start=c(alpha=0.2,beta=0.2))
 print(a)
 
 install.packages("poweRlaw")
 library("poweRlaw")
 data("moby")
 x = moby
-b = mmfit(g="power law",x=x,start=c(20))
+b = mmfit(g="power law",x=x,start=c(gamma = 20))
 print(b)
 }
 \keyword{mmfit}

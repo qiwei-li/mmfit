@@ -38,10 +38,20 @@ print.mmf=function(x,...){
 }
 
 summary.mmf=function(object,...){
-  for(i in 1:length(object[[1]])){
-    print(paste0("The point estimate for the ", i, "th parameter is ", round(object[[1]][i],3),
-                 ", the standard error is ", round(object[[2]][i],3)))
+  name = names(object$thetahat)
+  if(is.null(name)){
+    for(i in 1:length(object[[1]])){
+      print(paste0("The point estimate for the ", i, "th parameter is ", round(object[[1]][i],3),
+                   ", the standard error is ", round(object[[2]][i],3)))
+    }
   }
+  else{
+    for(i in 1:length(object[[1]])){
+      print(paste0("The point estimate for ", name[1], " is ", round(object[[1]][i],3),
+                   ", the standard error is ", round(object[[2]][i],3)))
+    }
+  }
+  
 }
 
 plot.mmf=function(x,...){
