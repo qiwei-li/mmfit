@@ -1,15 +1,15 @@
 \name{mmfit}
 \alias{mmfit}
-\title{mmfit}
+\title{method of moment fitting function}
 \description{fit data with method of moment}
 \usage{
 mmfit(g, x, gd, start)
 }
 \arguments{
 \item{g}{Name of the distribution. Built in option includes: {"poisson", "power law","bivariate normal", "gamma", "beta", "negative binomial","mixture of 2 poissons", "mixture of 2 exponentials","mixture of 2 normals"}}
-\item{x}{A vector of data or matrix/data.frame}
+\item{x}{A vector of data or matrix/data frame}
 \item{start}{Starting values of the estimating parameters}
-\item{gd}{If user supplies g, he needs to supplies the pmf/pdf as gd. i.e. gd = function(x, list(th1, th2, ...))Default to NULL}
+\item{gd}{If user supplies g, he needs to supplies the pmf/pdf as gd. i.e. gd = function(x, list(th1, th2, ...)). Default to NULL}
 }
 \value{
 mmf object which includes the estimations and standard errors of the parameters, a graph object that compares the parametric and nonparametric density estimates, a graph object that draws the empirical cdf and an enclosing Kolmogorov-Smirnov confidence band. Note that we don't visualize for multivariate data.
